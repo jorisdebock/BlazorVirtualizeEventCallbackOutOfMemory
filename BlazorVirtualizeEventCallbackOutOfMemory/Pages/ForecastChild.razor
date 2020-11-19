@@ -1,0 +1,29 @@
+﻿@using BlazorVirtualizeEventCallbackOutOfMemory.Data
+
+<tr>
+    <td>@Forecast.Date.ToShortDateString()</td>
+    <td>@Forecast.TemperatureC</td>
+    <td>@Forecast.TemperatureF</td>
+    <td>@Forecast.Summary</td>
+</tr>
+
+@code {
+    private WeatherForecast _forecast;
+
+    [Parameter]
+    public WeatherForecast Forecast
+    {
+        get
+        {
+            return _forecast;
+        }
+        set
+        {
+            _forecast = value;
+            Changed.InvokeAsync();
+        }
+    }
+
+    [Parameter]
+    public EventCallback Changed { get; set; }
+}
